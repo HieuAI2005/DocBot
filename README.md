@@ -129,7 +129,7 @@ sequenceDiagram
     API->>SLM: Generate with context
     
     loop Streaming
-        LLM-->>API: Token
+        SLM-->>API: Token
         API-->>Frontend: SSE event
         Frontend-->>User: Display token
     end
