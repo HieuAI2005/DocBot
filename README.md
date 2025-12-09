@@ -1,6 +1,6 @@
 # 🤖 DocBot - AI-Powered Document Q&A System
 
-An intelligent chatbot system that enables natural conversations with your PDF documents using advanced AI technologies including RAG (Retrieval-Augmented Generation) and LLM reasoning.
+An intelligent chatbot system that enables natural conversations with your PDF documents using advanced AI technologies including RAG (Retrieval-Augmented Generation) and SLM reasoning.
 
 ![Version](https://img.shields.io/badge/version-1.0.0-blue)
 ![Python](https://img.shields.io/badge/python-3.10-green)
@@ -63,7 +63,7 @@ graph TB
     subgraph "AI Pipeline"
         Extract[PDF Extraction]
         RAG[Adaptive RAG]
-        LLM[LLM Engine]
+        SLM[SLM Engine]
         
         subgraph "RAG Components"
             BM25[BM25 Retrieval]
@@ -90,7 +90,7 @@ graph TB
     Upload --> Extract
     Extract --> RAG
     ChatSvc --> RAG
-    ChatSvc --> LLM
+    ChatSvc --> SLM
     
     RAG --> BM25
     RAG --> Dense
@@ -111,7 +111,7 @@ sequenceDiagram
     participant Frontend
     participant API
     participant RAG
-    participant LLM
+    participant SLM
     participant DB
 
     User->>Frontend: Upload PDF
@@ -126,7 +126,7 @@ sequenceDiagram
     API->>DB: Get conversation history
     API->>RAG: Retrieve relevant chunks
     RAG-->>API: Return top-k chunks
-    API->>LLM: Generate with context
+    API->>SLM: Generate with context
     
     loop Streaming
         LLM-->>API: Token
@@ -175,7 +175,7 @@ graph LR
     DocFilter --> Rerank
     
     Rerank --> TopK[Top-K Selection]
-    TopK --> Context[Context for LLM]
+    TopK --> Context[Context for SLM]
 ```
 
 **Key Components:**
@@ -185,7 +185,7 @@ graph LR
 - **Feedback Learning**: User feedback improves future retrievals
 - **Dynamic Top-K**: Adaptive number of chunks based on query
 
-### 3. LLM Generation
+### 3. SLM Generation
 
 ```
 Context Chunks
@@ -236,7 +236,7 @@ Real-time Display
 - **PDF Processing**: PyPDF2 (fallback: mineru)
 
 ### AI/ML
-- **LLM**: Qwen2.5-1.5B-Instruct
+- **SLM**: Qwen2.5-1.5B-Instruct
 - **Embeddings**: intfloat/multilingual-e5-small
 - **Retrieval**: Hybrid BM25 + Dense
 - **Framework**: PyTorch + Transformers
